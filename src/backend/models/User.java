@@ -93,7 +93,7 @@ public class User {
     public void setRecuperacion(boolean recuperacion) {
         this.recuperacion = recuperacion;
     }
-
+    
     public int getIdEmpleado() {
         return idEmpleado;
     }

@@ -3,54 +3,50 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backend.dao.user;
+package backend.dao.transfer;
 
 import backend.ICRUD.ICRUD;
-import backend.models.User;
+import backend.models.Transfer;
 import dbconnection.DbConnection;
 
-import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author bruno
  */
-public class UserDAO implements ICRUD<User> {
+public class TransferDAO implements ICRUD<Transfer> {
 
     /**
-     * Inserta un nuevo usuario en la DB
-     * @param t Objeto de clase User
+     * Inserta un nuevo traspaso en la DB
+     * @param t Objeto de clase Transfer
      * @return boolean
      */
     @Override
-    public boolean add(User t) {
+    public boolean add(Transfer t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "INSERT INTO usuarios( email, password, activo, habilitado, recuperacion, idEmpleado )"
-                    + "VALUES( ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO traspasos( numero_traspado, idEmpleado )"
+                    + " VALUES( ?, ? )";
             
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, t.getEmail());
-            ps.setString(2, t.getPassword());
-            ps.setBoolean(3, t.isActivo());
-            ps.setBoolean(5, t.isHabilitado());
-            ps.setBoolean(5, t.isRecuperacion());
-            ps.setInt(6, t.getIdEmpleado());
-            
+            ps.setString(1, t.getNumero_traspado());
+            ps.setInt(2, t.getIdEmpleado());
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
+            
         }
         catch( SQLException sqlex ) {
             JOptionPane.showMessageDialog(
                     null,
-                    "Error con consulta INSERT:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al agregar nuevo usuario",
+                    "Error con consulta INSERT:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(), 
+                    "Error al agregar un nuevo traspaso",
                     JOptionPane.ERROR
             );
             return false;
@@ -58,42 +54,34 @@ public class UserDAO implements ICRUD<User> {
     }
 
     /**
-     * Actualiza un usuario en la DB
-     * @param t Objeto de clase User
-     * @return 
+     * Actualiza un traspaso en la DB
+     * @param t Objeto de clase Transfer
+     * @return boolean
      */
     @Override
-    public boolean update(User t) {
+    public boolean update(Transfer t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "UPDATE usuarios "
+            String query = "UPDATE traspaso "
                             + "SET "
-                                + "email = ?, "
-                                + "password = ?, "
-                                + "activo = ?, "
-                                + "habilitado = ?, "
-                                + "recuperacion = ?, "
-                                + "idEmpleado = ?"
-                            + "WHERE idUsuario = ?";
+                                + "numero_traspado = ?, "
+                                + "idEmpleado = ? "
+                            + "WHERE idTraspaso = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, t.getEmail());
-            ps.setString(2, t.getPassword());
-            ps.setBoolean(3, t.isActivo());
-            ps.setBoolean(5, t.isHabilitado());
-            ps.setBoolean(5, t.isRecuperacion());
-            ps.setInt(6, t.getIdEmpleado());
-            ps.setInt(7, t.getIdUsuario());
-            
+            ps.setString(1, t.getNumero_traspado());
+            ps.setInt(2, t.getIdEmpleado());
+            ps.setInt(3, t.getIdTraspaso());
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
+            
         }
         catch( SQLException sqlex ) {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta UPDATE:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al actualizar usuario",
+                    "Error al actualizar el traspaso",
                     JOptionPane.ERROR
             );
             return false;
@@ -101,28 +89,29 @@ public class UserDAO implements ICRUD<User> {
     }
 
     /**
-     * Elimina un usuario de la DB
-     * @param t Objeto de clase User
+     * Elimina un traspaso de la DB
+     * @param t Objeto de clase Transfer
      * @return boolean
      */
     @Override
-    public boolean delete(User t) {
+    public boolean delete(Transfer t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "DELETE FROM usuarios"
-                            + "WHERE idUsuario = ?";
+            String query = "DELETE FROM traspasos"
+                            + "WHERE idTraspaso = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, t.getIdUsuario());
+            ps.setInt(1, t.getIdTraspaso());
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
+            
         }
         catch( SQLException sqlex ) {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta DELETE:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al eliminar usuario",
+                    "Error al eliminar el traspaso",
                     JOptionPane.ERROR
             );
             return false;
@@ -130,39 +119,36 @@ public class UserDAO implements ICRUD<User> {
     }
 
     /**
-     * Obtención de un usuario según el parámetro especificado
-     * @param id id del usuario a buscar
-     * @return User
+     * Obtención de un traspaso según el parámetro especificado
+     * @param id id del traspaso a buscar
+     * @return Transfer
      */
     @Override
-    public User getOne(int id) {
+    public Transfer getOne(int id) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "SELECT * FROM usuarios "
-                            + "WHERE idUsuario = ?";
+            String query = "SELECT * FROM traspasos "
+                            + "WHERE idTraspaso = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, id);
             
             ResultSet rs = ps.executeQuery();
-            if ( rs.next() ) {
-                User u = new User();
-                u.setIdUsuario( rs.getInt( "idUsuario" ) );
-                u.setEmail( rs.getString( "email" ) );
-                u.setPassword( rs.getString( "password" ) );
-                u.setActivo( rs.getBoolean( "activo" ) );
-                u.setHabilitado( rs.getBoolean( "habilitado" ) );
-                u.setRecuperacion( rs.getBoolean( "recuperacion" ) );
-                u.setIdEmpleado( rs.getInt( "idEmpleado" ) );
-                return u;
+            if( rs.next() ) {
+                Transfer t = new Transfer();
+                t.setIdTraspaso( rs.getInt( "idTraspaso" ) );
+                t.setNumero_traspado( rs.getString( "numero_traspado" ) );
+                t.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+                
+                return t;
             }
             else {
                 JOptionPane.showMessageDialog(
                     null,
                     "Ningún elemento coincide con el parámetro dado",
-                    "Error al obtener usuario",
+                    "Error al obtener traspaso",
                     JOptionPane.ERROR
-            );
+                );
                 return null;
             }
         }
@@ -170,7 +156,7 @@ public class UserDAO implements ICRUD<User> {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta SELECT:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al obtener usuario",
+                    "Error al obtener traspaso",
                     JOptionPane.ERROR
             );
             return null;
@@ -178,32 +164,26 @@ public class UserDAO implements ICRUD<User> {
     }
 
     /**
-     * Obtención de un listado de todos los usuarios
-     * @return ArrayList<User>
+     * Obtención del listado de todos los traspasos
+     * @return ArrayList<Transfer>
      */
     @Override
-    public ArrayList<User> getAll() {
+    public ArrayList<Transfer> getAll() {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "SELECT * FROM usuarios";
+            String query = "SELECT * FROM traspasos";
             
             PreparedStatement ps = conn.prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
-            
-            ArrayList<User> list = new ArrayList<User>();
-            
-            while ( rs.next() ) {
-                User u = new User();
-                u.setIdUsuario( rs.getInt( "idUsuario" ) );
-                u.setEmail( rs.getString( "email" ) );
-                u.setPassword( rs.getString( "password" ) );
-                u.setActivo( rs.getBoolean( "activo" ) );
-                u.setHabilitado( rs.getBoolean( "habilitado" ) );
-                u.setRecuperacion( rs.getBoolean( "recuperacion" ) );
-                u.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+            ArrayList<Transfer> list = new ArrayList<Transfer>();
+            while( rs.next() ) {
+                Transfer t = new Transfer();
+                t.setIdTraspaso( rs.getInt( "idTraspaso" ) );
+                t.setNumero_traspado( rs.getString( "numero_traspado" ) );
+                t.setIdEmpleado( rs.getInt( "idEmpleado" ) );
                 
-                list.add(u);
+                list.add(t);
             }
             return list;
         }
@@ -211,7 +191,7 @@ public class UserDAO implements ICRUD<User> {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta SELECT:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al obtener listado de usuarios",
+                    "Error al obtener listado de traspasos",
                     JOptionPane.ERROR
             );
             return null;
@@ -219,7 +199,7 @@ public class UserDAO implements ICRUD<User> {
     }
 
     @Override
-    public ArrayList<User> query(User t) {
+    public ArrayList<Transfer> query(Transfer t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

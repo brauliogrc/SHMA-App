@@ -3,45 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backend.dao.user;
+package backend.dao.employee;
 
 import backend.ICRUD.ICRUD;
-import backend.models.User;
+import backend.models.Employee;
 import dbconnection.DbConnection;
 
-import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author bruno
  */
-public class UserDAO implements ICRUD<User> {
+public class EmployeeDAO implements ICRUD<Employee> {
 
     /**
-     * Inserta un nuevo usuario en la DB
-     * @param t Objeto de clase User
+     * Inserta un nuevo empleado en la DB
+     * @param t Objeto de clase Employee
      * @return boolean
      */
     @Override
-    public boolean add(User t) {
+    public boolean add(Employee t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "INSERT INTO usuarios( email, password, activo, habilitado, recuperacion, idEmpleado )"
-                    + "VALUES( ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO empleados( funcion, nombre, apellido_paterno, apellido_materno, telefono, imagen )"
+                    + "VALUES( ?, ?, ?, ?, ?, ? )";
             
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, t.getEmail());
-            ps.setString(2, t.getPassword());
-            ps.setBoolean(3, t.isActivo());
-            ps.setBoolean(5, t.isHabilitado());
-            ps.setBoolean(5, t.isRecuperacion());
-            ps.setInt(6, t.getIdEmpleado());
-            
+            ps.setString(1, t.getFuncion());
+            ps.setString(2, t.getNombre());
+            ps.setString(3, t.getApellido_paterno());
+            ps.setString(4, t.getApellido_materno());
+            ps.setString(5, t.getTelefono());
+            ps.setString(6, t.getImagen());
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
@@ -50,7 +49,7 @@ public class UserDAO implements ICRUD<User> {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta INSERT:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al agregar nuevo usuario",
+                    "Error al agregar nuevo empleado",
                     JOptionPane.ERROR
             );
             return false;
@@ -58,33 +57,32 @@ public class UserDAO implements ICRUD<User> {
     }
 
     /**
-     * Actualiza un usuario en la DB
-     * @param t Objeto de clase User
-     * @return 
+     * Actualiza un empleado en la DB
+     * @param t Objeto de clase Employee
+     * @return boolean
      */
     @Override
-    public boolean update(User t) {
+    public boolean update(Employee t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "UPDATE usuarios "
-                            + "SET "
-                                + "email = ?, "
-                                + "password = ?, "
-                                + "activo = ?, "
-                                + "habilitado = ?, "
-                                + "recuperacion = ?, "
-                                + "idEmpleado = ?"
-                            + "WHERE idUsuario = ?";
+            String query = "UPDATE empleados "
+                    + "SET "
+                        + "funcion = ?, "
+                        + "nombre = ?, "
+                        + "apellido_paterno = ?, "
+                        + "apellido_materno = ?, "
+                        + "telefono = ?, "
+                        + "imagen = ? "
+                    + "WHERE idEmpleado = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, t.getEmail());
-            ps.setString(2, t.getPassword());
-            ps.setBoolean(3, t.isActivo());
-            ps.setBoolean(5, t.isHabilitado());
-            ps.setBoolean(5, t.isRecuperacion());
-            ps.setInt(6, t.getIdEmpleado());
-            ps.setInt(7, t.getIdUsuario());
-            
+            ps.setString(1, t.getFuncion());
+            ps.setString(2, t.getNombre());
+            ps.setString(3, t.getApellido_paterno());
+            ps.setString(4, t.getApellido_materno());
+            ps.setString(5, t.getTelefono());
+            ps.setString(6, t.getImagen());
+            ps.setInt(7, t.getIdEmpleado());
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
@@ -93,7 +91,7 @@ public class UserDAO implements ICRUD<User> {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta UPDATE:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al actualizar usuario",
+                    "Error al actualizar empleado",
                     JOptionPane.ERROR
             );
             return false;
@@ -101,19 +99,19 @@ public class UserDAO implements ICRUD<User> {
     }
 
     /**
-     * Elimina un usuario de la DB
-     * @param t Objeto de clase User
+     * Elimina un empleado de la DB
+     * @param t Objeto de clase Employee
      * @return boolean
      */
     @Override
-    public boolean delete(User t) {
+    public boolean delete(Employee t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "DELETE FROM usuarios"
-                            + "WHERE idUsuario = ?";
+            String query = "DELETE FROM empleados"
+                            + "WHERE idEmpleado = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, t.getIdUsuario());
+            ps.setInt(1, t.getIdEmpleado());
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
@@ -122,7 +120,7 @@ public class UserDAO implements ICRUD<User> {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta DELETE:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al eliminar usuario",
+                    "Error al eliminar empleado",
                     JOptionPane.ERROR
             );
             return false;
@@ -130,31 +128,32 @@ public class UserDAO implements ICRUD<User> {
     }
 
     /**
-     * Obtención de un usuario según el parámetro especificado
-     * @param id id del usuario a buscar
-     * @return User
+     * Obtención de un empleado según el parámetro espcificado
+     * @param id id del empleado a buscar
+     * @return Employee
      */
     @Override
-    public User getOne(int id) {
+    public Employee getOne(int id) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "SELECT * FROM usuarios "
-                            + "WHERE idUsuario = ?";
+            String query = "SELECT * FROM empleados "
+                            + "WHERE idEmpleado = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, id);
             
             ResultSet rs = ps.executeQuery();
             if ( rs.next() ) {
-                User u = new User();
-                u.setIdUsuario( rs.getInt( "idUsuario" ) );
-                u.setEmail( rs.getString( "email" ) );
-                u.setPassword( rs.getString( "password" ) );
-                u.setActivo( rs.getBoolean( "activo" ) );
-                u.setHabilitado( rs.getBoolean( "habilitado" ) );
-                u.setRecuperacion( rs.getBoolean( "recuperacion" ) );
-                u.setIdEmpleado( rs.getInt( "idEmpleado" ) );
-                return u;
+                Employee e = new Employee();
+                e.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+                e.setFuncion( rs.getString( "funcion" ) );
+                e.setNombre( rs.getString( "nombre" ) );
+                e.setApellido_paterno( rs.getString( "apellido_paterno" ) );
+                e.setApellido_materno( rs.getString( "apellido_materno" ) );
+                e.setApellido_materno( rs.getString( "telefono" ) );
+                e.setApellido_materno( rs.getString( "imagen" ) );
+                
+                return e;
             }
             else {
                 JOptionPane.showMessageDialog(
@@ -170,7 +169,7 @@ public class UserDAO implements ICRUD<User> {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta SELECT:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al obtener usuario",
+                    "Error al obtener empleado",
                     JOptionPane.ERROR
             );
             return null;
@@ -178,40 +177,41 @@ public class UserDAO implements ICRUD<User> {
     }
 
     /**
-     * Obtención de un listado de todos los usuarios
-     * @return ArrayList<User>
+     * Obtención del listado de todos los empleados
+     * @return ArrayList<Employee>
      */
     @Override
-    public ArrayList<User> getAll() {
+    public ArrayList<Employee> getAll() {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "SELECT * FROM usuarios";
+            String query = "SELECT * FROM empleados";
             
             PreparedStatement ps = conn.prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
             
-            ArrayList<User> list = new ArrayList<User>();
-            
+            ArrayList<Employee> list = new ArrayList<Employee>();
             while ( rs.next() ) {
-                User u = new User();
-                u.setIdUsuario( rs.getInt( "idUsuario" ) );
-                u.setEmail( rs.getString( "email" ) );
-                u.setPassword( rs.getString( "password" ) );
-                u.setActivo( rs.getBoolean( "activo" ) );
-                u.setHabilitado( rs.getBoolean( "habilitado" ) );
-                u.setRecuperacion( rs.getBoolean( "recuperacion" ) );
-                u.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+                Employee e = new Employee();
+                e.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+                e.setFuncion( rs.getString( "funcion" ) );
+                e.setNombre( rs.getString( "nombre" ) );
+                e.setApellido_paterno( rs.getString( "apellido_paterno" ) );
+                e.setApellido_materno( rs.getString( "apellido_materno" ) );
+                e.setApellido_materno( rs.getString( "telefono" ) );
+                e.setApellido_materno( rs.getString( "imagen" ) );
                 
-                list.add(u);
+                list.add(e);
             }
+            
             return list;
+            
         }
         catch( SQLException sqlex ) {
             JOptionPane.showMessageDialog(
                     null,
                     "Error con consulta SELECT:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
-                    "Error al obtener listado de usuarios",
+                    "Error al obtener listado de empleados",
                     JOptionPane.ERROR
             );
             return null;
@@ -219,7 +219,7 @@ public class UserDAO implements ICRUD<User> {
     }
 
     @Override
-    public ArrayList<User> query(User t) {
+    public ArrayList<Employee> query(Employee t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
