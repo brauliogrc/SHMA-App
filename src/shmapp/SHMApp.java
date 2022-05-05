@@ -5,6 +5,10 @@
  */
 package shmapp;
 
+import dbconnection.DbConnection;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 /**
  *
@@ -15,8 +19,9 @@ public class SHMApp {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         System.out.println( "Hello world" );
+        DbConnection.getConnection();
     }    
 }
