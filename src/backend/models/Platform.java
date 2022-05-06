@@ -16,11 +16,10 @@ public class Platform {
     private int idDolly;
     private int idSecondBox;
 
-    public Platform(int idPlatform, int idMainBox) {
+    public Platform(int idPlatform) {
         this.idPlatform = idPlatform;
-        this.idMainBox = idMainBox;
     }
-
+    
     public Platform(int idPlatform, int idMainBox, int idDolly, int idSecondBox) {
         this.idPlatform = idPlatform;
         this.idMainBox = idMainBox;
