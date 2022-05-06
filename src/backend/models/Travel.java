@@ -17,8 +17,8 @@ public class Travel {
     private String hora_final;
     private String fecha_inicial;
     private String fecha_final;
-    private String kilometraje_salida;
-    private String kilometraje_llegada;
+    private Double kilometraje_salida;
+    private Double kilometraje_llegada;
     private int idTraspaso;
     private int idPlataforma;
     private int idCamion;
@@ -26,6 +26,10 @@ public class Travel {
 
     public Travel(int idViaje) {
         this.idViaje = idViaje;
+    }
+
+    public int getIdViaje() {
+        return idViaje;
     }
     
     public String getHora_inicial() {
@@ -60,19 +64,19 @@ public class Travel {
         this.fecha_final = fecha_final;
     }
 
-    public String getKilometraje_salida() {
+    public Double getKilometraje_salida() {
         return kilometraje_salida;
     }
 
-    public void setKilometraje_salida(String kilometraje_salida) {
+    public void setKilometraje_salida(Double kilometraje_salida) {
         this.kilometraje_salida = kilometraje_salida;
     }
 
-    public String getKilometraje_llegada() {
+    public Double getKilometraje_llegada() {
         return kilometraje_llegada;
     }
 
-    public void setKilometraje_llegada(String kilometraje_llegada) {
+    public void setKilometraje_llegada(Double kilometraje_llegada) {
         this.kilometraje_llegada = kilometraje_llegada;
     }
 

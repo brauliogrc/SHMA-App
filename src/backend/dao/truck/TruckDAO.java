@@ -34,7 +34,6 @@ public class TruckDAO implements ICRUD<Truck>{
             ps.setString(3, t.getModelo());
             ps.setBoolean(4, t.isMantenimiento());
             ps.setBoolean(5, t.isActivo());
-            ps.setInt(6, t.getIdCamion() );
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
@@ -105,7 +104,7 @@ public class TruckDAO implements ICRUD<Truck>{
                     null,
                     "Error con consulta DELETE:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
                     "Error al eliminar el traspaso",
-                    JOptionPane.ERROR
+                    JOptionPane.ERROR_MESSAGE
             );
             return false;
         }

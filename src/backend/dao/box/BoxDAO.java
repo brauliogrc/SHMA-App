@@ -34,7 +34,6 @@ public class BoxDAO implements ICRUD<Box>{
             ps.setString(3, t.getModelo());
             ps.setBoolean(4, t.isMantenimiento());
             ps.setBoolean(5, t.isActivo());
-            ps.setInt(6, t.getIdCaja() );
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
@@ -105,7 +104,7 @@ public class BoxDAO implements ICRUD<Box>{
                     null,
                     "Error con consulta DELETE:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
                     "Error al eliminar la caja",
-                    JOptionPane.ERROR
+                    JOptionPane.ERROR_MESSAGE
             );
             return false;
         }
