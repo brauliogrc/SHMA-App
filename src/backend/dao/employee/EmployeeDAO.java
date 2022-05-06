@@ -107,7 +107,7 @@ public class EmployeeDAO implements ICRUD<Employee> {
     public boolean delete(Employee t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "DELETE FROM empleados"
+            String query = "DELETE FROM empleados "
                             + "WHERE idEmpleado = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
@@ -150,8 +150,8 @@ public class EmployeeDAO implements ICRUD<Employee> {
                 e.setNombre( rs.getString( "nombre" ) );
                 e.setApellido_paterno( rs.getString( "apellido_paterno" ) );
                 e.setApellido_materno( rs.getString( "apellido_materno" ) );
-                e.setApellido_materno( rs.getString( "telefono" ) );
-                e.setApellido_materno( rs.getString( "imagen" ) );
+                e.setTelefono( rs.getString( "telefono" ) );
+                e.setImagen( rs.getString( "imagen" ) );
                 
                 return e;
             }
@@ -198,8 +198,8 @@ public class EmployeeDAO implements ICRUD<Employee> {
                 e.setNombre( rs.getString( "nombre" ) );
                 e.setApellido_paterno( rs.getString( "apellido_paterno" ) );
                 e.setApellido_materno( rs.getString( "apellido_materno" ) );
-                e.setApellido_materno( rs.getString( "telefono" ) );
-                e.setApellido_materno( rs.getString( "imagen" ) );
+                e.setTelefono(rs.getString( "telefono" ) );
+                e.setImagen(rs.getString( "imagen" ) );
                 
                 list.add(e);
             }

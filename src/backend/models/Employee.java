@@ -131,4 +131,16 @@ public class Employee {
     public String toString() {
         return "Employee{" + "idEmpleado=" + idEmpleado + ", funcion=" + funcion + ", nombre=" + nombre + ", apellido_paterno=" + apellido_paterno + ", apellido_materno=" + apellido_materno + ", telefono=" + telefono + ", imagen=" + imagen + '}';
     }
+    
+    public boolean verifyContent() {
+        boolean isValid = true;
+        if ( nombre == null || nombre.length() <= 0 ) isValid = false;
+        if ( apellido_paterno == null || apellido_paterno.length() <= 0 ) isValid = false;
+        if ( apellido_materno == null || apellido_materno.length() <= 0 ) isValid = false;
+        if ( funcion == null || funcion.length() <= 0 ) isValid = false;
+        if ( telefono == null || telefono.length() <= 0 ) isValid = false;
+        if ( imagen == null || imagen.length() <= 0 ) isValid = false;
+        
+        return isValid;
+    }
 }

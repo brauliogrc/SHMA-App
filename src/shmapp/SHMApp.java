@@ -5,6 +5,9 @@
  */
 package shmapp;
 
+import backend.dao.employee.EmployeeDAO;
+import backend.models.Employee;
+
 
 /**
  *
@@ -18,5 +21,9 @@ public class SHMApp {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println( "Hello world" );
+        EmployeeDAO employee = new EmployeeDAO();
+        Employee employee2;
+        employee2 = employee.getOne(1);
+        System.out.println( employee2.getNombre() + " " + employee2.getApellido_paterno() );
     }    
 }

@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package users.frontend.get;
+package frontend.employee.update;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -17,11 +20,12 @@ import javafx.stage.Stage;
  *
  * @author bruno
  */
-public class GetUsers extends Application {
+public class UpdateEmployee extends Application {
     
+    Stage primaryStage;
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
+        /*Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
@@ -38,7 +42,24 @@ public class GetUsers extends Application {
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.show();*/
+        
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle( "Actualizar empleado" );
+        
+        this.initLayout();
+    }
+    
+    public void initLayout() {
+        try {
+            Parent root = FXMLLoader.load( getClass().getResource( "UpdateEmployee.fxml" ) );
+            Scene scene = new Scene( root );
+            this.primaryStage.setScene(scene);
+            this.primaryStage.show();
+        }
+        catch( IOException ioex ) {
+            System.out.println( ioex.getMessage() );
+        }
     }
 
     /**
