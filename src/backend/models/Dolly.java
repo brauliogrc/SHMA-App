@@ -12,8 +12,8 @@ package backend.models;
 public class Dolly {
     
     private int idDolly;
-    private String numero_economico_dolly;
-    private String numero_serie_dolly;
+    private String numero_economico;
+    private String numero_serie;
     private String modelo;
     private boolean mantenimiento;
     private boolean activo;    
@@ -22,21 +22,26 @@ public class Dolly {
         this.idDolly = idDolly;
     }
 
-    public String getNumero_economico_dolly() {
-        return numero_economico_dolly;
+    public int getIdDolly() {
+        return idDolly;
     }
 
-    public void setNumero_economico_dolly(String numero_economico_dolly) {
-        this.numero_economico_dolly = numero_economico_dolly;
+    public String getNumero_economico() {
+        return numero_economico;
     }
 
-    public String getNumero_serie_dolly() {
-        return numero_serie_dolly;
+    public void setNumero_economico(String numero_economico) {
+        this.numero_economico = numero_economico;
     }
 
-    public void setNumero_serie_dolly(String numero_serie_dolly) {
-        this.numero_serie_dolly = numero_serie_dolly;
+    public String getNumero_serie() {
+        return numero_serie;
     }
+
+    public void setNumero_serie(String numero_serie) {
+        this.numero_serie = numero_serie;
+    }
+
 
     public String getModelo() {
         return modelo;
@@ -86,8 +91,9 @@ public class Dolly {
 
     @Override
     public String toString() {
-        return "Dolly{" + "idDolly=" + idDolly + ", numero_economico_dolly=" + numero_economico_dolly + ", numero_serie_dolly=" + numero_serie_dolly + ", modelo=" + modelo + ", mantenimiento=" + mantenimiento + ", activo=" + activo + '}';
+        return "Dolly{" + "idDolly=" + idDolly + ", numero_economico=" + numero_economico + ", numero_serie=" + numero_serie + ", modelo=" + modelo + ", mantenimiento=" + mantenimiento + ", activo=" + activo + '}';
     }
+
     
     
 }

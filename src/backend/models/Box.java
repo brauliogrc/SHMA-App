@@ -12,8 +12,8 @@ package backend.models;
 public class Box {
         
     private int idCaja;
-    private String numero_economico_caja;
-    private String numero_serie_caja;
+    private String numero_economico;
+    private String numero_serie;
     private String modelo;
     private boolean mantenimiento;
     private boolean activo;    
@@ -22,21 +22,28 @@ public class Box {
         this.idCaja = idCaja;
     }
 
-    public String getNumero_economico_caja() {
-        return numero_economico_caja;
+    public int getIdCaja() {
+        return idCaja;
     }
 
-    public void setNumero_economico_caja(String numero_economico_caja) {
-        this.numero_economico_caja = numero_economico_caja;
+    
+    public String getNumero_economico() {
+        return numero_economico;
     }
 
-    public String getNumero_serie_caja() {
-        return numero_serie_caja;
+    public void setNumero_economico(String numero_economico) {
+        this.numero_economico = numero_economico;
     }
 
-    public void setNumero_serie_caja(String numero_serie_caja) {
-        this.numero_serie_caja = numero_serie_caja;
+    public String getNumero_serie() {
+        return numero_serie;
     }
+
+    public void setNumero_serie(String numero_serie) {
+        this.numero_serie = numero_serie;
+    }
+
+
 
     public String getModelo() {
         return modelo;
@@ -86,8 +93,8 @@ public class Box {
 
     @Override
     public String toString() {
-        return "Box{" + "idCaja=" + idCaja + ", numero_economico_caja=" + numero_economico_caja + ", numero_serie_caja=" + numero_serie_caja + ", modelo=" + modelo + ", mantenimiento=" + mantenimiento + ", activo=" + activo + '}';
+        return "Box{" + "idCaja=" + idCaja + ", numero_economico=" + numero_economico + ", numero_serie=" + numero_serie + ", modelo=" + modelo + ", mantenimiento=" + mantenimiento + ", activo=" + activo + '}';
     }
-    
+
     
 }

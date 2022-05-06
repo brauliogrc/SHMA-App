@@ -14,8 +14,8 @@ import java.util.Objects;
 public class Truck {
     
     private int idCamion;
-    private String numero_economico_camion;
-    private String numero_serie_camion;
+    private String numero_economico;
+    private String numero_serie;
     private String modelo;
     private boolean mantenimiento;
     private boolean activo;    
@@ -24,20 +24,28 @@ public class Truck {
         this.idCamion = idCamione;
     }
 
-    public String getNumero_economico_camion() {
-        return numero_economico_camion;
+    public Truck() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setNumero_economico_camion(String numero_economico_camion) {
-        this.numero_economico_camion = numero_economico_camion;
+    public int getIdCamion() {
+        return idCamion;
     }
 
-    public String getNumero_serie_camion() {
-        return numero_serie_camion;
+    public String getNumero_economico() {
+        return numero_economico;
     }
 
-    public void setNumero_serie_camion(String numero_serie_camion) {
-        this.numero_serie_camion = numero_serie_camion;
+    public void setNumero_economico(String numero_economico) {
+        this.numero_economico = numero_economico;
+    }
+
+    public String getNumero_serie() {
+        return numero_serie;
+    }
+
+    public void setNumero_serie(String numero_serie) {
+        this.numero_serie = numero_serie;
     }
 
     public String getModelo() {
@@ -87,7 +95,7 @@ public class Truck {
 
     @Override
     public String toString() {
-        return "Truck{" + "idCamione=" + idCamion + ", numero_economico_camion=" + numero_economico_camion + ", numero_serie_camion=" + numero_serie_camion + ", modelo=" + modelo + ", mantenimiento=" + mantenimiento + ", activo=" + activo + '}';
+        return "Truck{" + "idCamion=" + idCamion + ", numero_economico=" + numero_economico + ", numero_serie=" + numero_serie + ", modelo=" + modelo + ", mantenimiento=" + mantenimiento + ", activo=" + activo + '}';
     }
 
     
