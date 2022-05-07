@@ -96,7 +96,7 @@ public class EmployeesViewController implements Initializable {
     }
     
     /**
-     * Registra un nuevo usuario en la DB
+     * Registra un nuevo empleado en la DB
      */
     public void addEmployee() {
         this.employee = new Employee();

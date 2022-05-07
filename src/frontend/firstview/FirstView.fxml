@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="63.0" prefWidth="178.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="frontend.firstview.FirstViewController">
+    <stylesheets>
+        <URL value="@firstview.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="279.0" prefWidth="538.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="SHMA Panel">
+               <font>
+                  <Font name="Consolas" size="28.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnEmployees" layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#showEmployeesView" text="Gestión de Empleados">
+               <font>
+                  <Font name="Consolas" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnUsers" layoutX="320.0" layoutY="109.0" mnemonicParsing="false" onAction="#showUsersView" text="Gestión de Usuarios">
+               <font>
+                  <Font name="Consolas" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnTransfers" layoutX="14.0" layoutY="190.0" mnemonicParsing="false" onAction="#showTransfersView" text="Gestión de Traspasos">
+               <font>
+                  <Font name="Consolas" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnOperators" layoutX="311.0" layoutY="190.0" mnemonicParsing="false" onAction="#showOperatorsView" text="Gestión de Operadores">
+               <font>
+                  <Font name="Consolas" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

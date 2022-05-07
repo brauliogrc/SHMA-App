@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/update/UpdateEmployeeController.java</file>
-            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/EmployeesViewController.java</file>
-            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/EmployeesView.java</file>
-            <file>file:/D:/SHMA/SHMApp/src/backend/dao/employee/EmployeeDAO.java</file>
-            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/update/UpdateEmployee.java</file>
-            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/update/updateemployee.css</file>
-            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/update/UpdateEmployee.fxml</file>
-            <file>file:/D:/SHMA/SHMApp/src/backend/models/Employee.java</file>
-            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/EmployeesView.fxml</file>
+            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/view/EmployeesViewController.java</file>
+            <file>file:/D:/SHMA/SHMApp/src/backend/dao/operator/OperatorDAO.java</file>
+            <file>file:/D:/SHMA/SHMApp/src/frontend/employee/view/EmployeesView.java</file>
+            <file>file:/D:/SHMA/SHMApp/src/frontend/operator/view/OperatorView.java</file>
+            <file>file:/D:/SHMA/SHMApp/src/backend/models/Operator.java</file>
+            <file>file:/D:/SHMA/SHMApp/src/frontend/operator/view/OperatorViewController.java</file>
         </group>
     </open-files>
 </project-private>

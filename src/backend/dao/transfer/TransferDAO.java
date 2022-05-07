@@ -31,7 +31,7 @@ public class TransferDAO implements ICRUD<Transfer> {
     public boolean add(Transfer t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "INSERT INTO traspasos( numero_traspado, idEmpleado )"
+            String query = "INSERT INTO traspasos( numero_traspado, idEmpleado ) "
                     + " VALUES( ?, ? )";
             
             PreparedStatement ps = conn.prepareStatement(query);
@@ -62,7 +62,7 @@ public class TransferDAO implements ICRUD<Transfer> {
     public boolean update(Transfer t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "UPDATE traspaso "
+            String query = "UPDATE traspasos "
                             + "SET "
                                 + "numero_traspado = ?, "
                                 + "idEmpleado = ? "
@@ -97,7 +97,7 @@ public class TransferDAO implements ICRUD<Transfer> {
     public boolean delete(Transfer t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "DELETE FROM traspasos"
+            String query = "DELETE FROM traspasos "
                             + "WHERE idTraspaso = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);

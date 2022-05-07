@@ -31,8 +31,8 @@ public class OperatorDAO implements ICRUD<Operator> {
     public boolean add(Operator t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "INSERT INTO operadores( activo, descanso, idEmpleado )"
-                    + " VALUES( ?, ?, ?, ? )";
+            String query = "INSERT INTO operadores( activo, descanso, idEmpleado ) "
+                    + " VALUES( ?, ?, ? )";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setBoolean(1, t.isActivo());
@@ -63,7 +63,7 @@ public class OperatorDAO implements ICRUD<Operator> {
     public boolean update(Operator t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "UPDATE operadores"
+            String query = "UPDATE operadores "
                             + "SET "
                                 + "activo = ?, "
                                 + "descanso = ?, "
@@ -100,7 +100,7 @@ public class OperatorDAO implements ICRUD<Operator> {
     public boolean delete(Operator t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "DELETE FROM operadores"
+            String query = "DELETE FROM operadores "
                             + "WHERE idOperador = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
@@ -134,6 +134,7 @@ public class OperatorDAO implements ICRUD<Operator> {
                         + "WHERE idOperador = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
             
             ResultSet rs = ps.executeQuery();
             if ( rs.next() ) {
@@ -185,6 +186,8 @@ public class OperatorDAO implements ICRUD<Operator> {
                 o.setActivo( rs.getBoolean( "activo" ) );
                 o.setDescanso( rs.getBoolean( "descanso" ) );
                 o.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+                
+                list.add(o);
             }
             return list;
         }

@@ -31,14 +31,14 @@ public class UserDAO implements ICRUD<User> {
     public boolean add(User t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "INSERT INTO usuarios( email, password, activo, habilitado, recuperacion, idEmpleado )"
+            String query = "INSERT INTO usuarios( email, password, activo, habilitado, recuperacion, idEmpleado ) "
                     + "VALUES( ?, ?, ?, ?, ?, ?)";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, t.getEmail());
             ps.setString(2, t.getPassword());
             ps.setBoolean(3, t.isActivo());
-            ps.setBoolean(5, t.isHabilitado());
+            ps.setBoolean(4, t.isHabilitado());
             ps.setBoolean(5, t.isRecuperacion());
             ps.setInt(6, t.getIdEmpleado());
             
@@ -73,14 +73,14 @@ public class UserDAO implements ICRUD<User> {
                                 + "activo = ?, "
                                 + "habilitado = ?, "
                                 + "recuperacion = ?, "
-                                + "idEmpleado = ?"
+                                + "idEmpleado = ? "
                             + "WHERE idUsuario = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, t.getEmail());
             ps.setString(2, t.getPassword());
             ps.setBoolean(3, t.isActivo());
-            ps.setBoolean(5, t.isHabilitado());
+            ps.setBoolean(4, t.isHabilitado());
             ps.setBoolean(5, t.isRecuperacion());
             ps.setInt(6, t.getIdEmpleado());
             ps.setInt(7, t.getIdUsuario());
@@ -109,7 +109,7 @@ public class UserDAO implements ICRUD<User> {
     public boolean delete(User t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "DELETE FROM usuarios"
+            String query = "DELETE FROM usuarios "
                             + "WHERE idUsuario = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);

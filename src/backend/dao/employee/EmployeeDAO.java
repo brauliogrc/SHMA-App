@@ -31,7 +31,7 @@ public class EmployeeDAO implements ICRUD<Employee> {
     public boolean add(Employee t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "INSERT INTO empleados( funcion, nombre, apellido_paterno, apellido_materno, telefono, imagen )"
+            String query = "INSERT INTO empleados( funcion, nombre, apellido_paterno, apellido_materno, telefono, imagen ) "
                     + "VALUES( ?, ?, ?, ?, ?, ? )";
             
             PreparedStatement ps = conn.prepareStatement(query);

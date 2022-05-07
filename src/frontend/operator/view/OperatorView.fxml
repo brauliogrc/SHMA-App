@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="300.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.operator.view.OperatorViewController">
+    <stylesheets>
+        <URL value="@operatorview.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="304.0" prefWidth="415.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Operators">
+               <font>
+                  <Font name="Consolas" size="28.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="ckbActivo" layoutX="60.0" layoutY="93.0" mnemonicParsing="false" text="Activo" />
+            <CheckBox fx:id="ckbDescanso" layoutX="268.0" layoutY="93.0" mnemonicParsing="false" text="Descanso" />
+            <Label layoutX="60.0" layoutY="156.0" text="Id Empleado:" />
+            <TextField fx:id="txtIdEmpleado" layoutX="163.0" layoutY="151.0" />
+            <Button fx:id="btnRegistrar" layoutX="14.0" layoutY="235.0" mnemonicParsing="false" onAction="#addOperator" text="Registrar" />
+            <Button fx:id="btnActualizar" layoutX="146.0" layoutY="235.0" mnemonicParsing="false" onAction="#showUpdatePopUp" text="Actualizar" />
+            <Button fx:id="btnEliminar" layoutX="277.0" layoutY="235.0" mnemonicParsing="false" onAction="#deleteOperator" text="Eliminar" />
+            <Separator layoutX="14.0" layoutY="286.0" prefHeight="6.0" prefWidth="384.0" />
+         </children>
+      </Pane>
+      <Pane layoutY="304.0" prefHeight="254.0" prefWidth="415.0">
+         <children>
+            <TableView fx:id="operatorsTable" layoutX="14.0" layoutY="14.0" prefHeight="228.0" prefWidth="384.0">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="65.0" text="Id" />
+                <TableColumn fx:id="colActivo" prefWidth="109.0" text="Activo" />
+                  <TableColumn fx:id="colDescanso" prefWidth="88.0" text="Descanso" />
+                  <TableColumn fx:id="colIdEmpleado" prefWidth="121.0" text="Id Empleado" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
