@@ -24,10 +24,12 @@ public class SHMApp {
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         System.out.println( "Hello world" );
+        DbConnection.getConnection();
 
         EmployeeDAO employee = new EmployeeDAO();
         Employee employee2;
         employee2 = employee.getOne(1);
         System.out.println( employee2.getNombre() + " " + employee2.getApellido_paterno() );
+
     }    
 }
