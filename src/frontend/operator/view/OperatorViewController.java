@@ -57,7 +57,7 @@ public class OperatorViewController implements Initializable {
     @FXML
     private TableColumn<Operator, Boolean> colDescanso;
     @FXML
-    private TableColumn<Operator, Integer> colIdEmpleado;
+    private TableColumn<Operator, String> colEmpleado;
     
     Operator operator;
     /**
@@ -72,12 +72,11 @@ public class OperatorViewController implements Initializable {
             this.colId.setCellValueFactory( new PropertyValueFactory<Operator, Integer>( "idOperador" ) );
             this.colActivo.setCellValueFactory( new PropertyValueFactory<Operator, Boolean>( "activo" ) );
             this.colDescanso.setCellValueFactory( new PropertyValueFactory<Operator, Boolean>( "descanso" ) );
-            this.colIdEmpleado.setCellValueFactory( new PropertyValueFactory<Operator, Integer>( "idEmpleado" ) );
+            this.colEmpleado.setCellValueFactory( new PropertyValueFactory<Operator, String>( "employeeName" ) );
             
             ObservableList<Operator> dat = FXCollections.observableArrayList( item );
             // this.employeesTable.getColumns().addAll( this.colId, this.colName, this.colApellidoPat, this.colApellidoMat, this.colFuncion, this.colTel, this.colImg );
             this.operatorsTable.getItems().add( item );
-            System.out.print( item.getIdOperador() + "asdasdasd" );
         } );
     }
     

@@ -171,7 +171,9 @@ public class TransferDAO implements ICRUD<Transfer> {
     public ArrayList<Transfer> getAll() {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "SELECT * FROM traspasos";
+            String query = "SELECT t.idTraspaso, t.numero_traspado, e.nombre "
+                            + "FROM traspasos AS t INNER JOIN empleados AS e "
+                            + "ON t.idEmpleado = e.idEmpleado;";
             
             PreparedStatement ps = conn.prepareStatement(query);
             
@@ -181,7 +183,7 @@ public class TransferDAO implements ICRUD<Transfer> {
                 Transfer t = new Transfer();
                 t.setIdTraspaso( rs.getInt( "idTraspaso" ) );
                 t.setNumero_traspado( rs.getString( "numero_traspado" ) );
-                t.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+                t.setEmployeeName(rs.getString( "nombre" ) );
                 
                 list.add(t);
             }

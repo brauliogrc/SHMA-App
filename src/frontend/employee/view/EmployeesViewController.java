@@ -49,6 +49,8 @@ public class EmployeesViewController implements Initializable {
     @FXML
     private TextField txtImg;
     @FXML
+    private TextField txtRol;
+    @FXML
     private TableView<Employee> employeesTable;
     @FXML
     private TableColumn<Employee, Integer> colId;
@@ -64,6 +66,8 @@ public class EmployeesViewController implements Initializable {
     private TableColumn<Employee, String> colTel;
     @FXML
     private TableColumn<Employee, String> colImg;
+    @FXML
+    private TableColumn<Employee, Integer> colRol;
     @FXML
     private Button btnRegister;
     @FXML
@@ -88,6 +92,7 @@ public class EmployeesViewController implements Initializable {
             this.colFuncion.setCellValueFactory( new PropertyValueFactory<Employee, String>( "funcion" ) );
             this.colTel.setCellValueFactory( new PropertyValueFactory<Employee, String>( "telefono" ) );
             this.colImg.setCellValueFactory( new PropertyValueFactory<Employee, String>( "imagen" ) );
+            this.colRol.setCellValueFactory( new PropertyValueFactory<Employee, Integer>( "rol" ) );
             
             ObservableList<Employee> dat = FXCollections.observableArrayList( item );
             // this.employeesTable.getColumns().addAll( this.colId, this.colName, this.colApellidoPat, this.colApellidoMat, this.colFuncion, this.colTel, this.colImg );
@@ -106,6 +111,7 @@ public class EmployeesViewController implements Initializable {
         this.employee.setFuncion( this.txtFuncion.getText() );
         this.employee.setTelefono( this.txtTel.getText() );
         this.employee.setImagen( this.txtImg.getText() );
+        this.employee.setRol( Integer.parseInt( this.txtRol.getText() ) );
         
         EmployeeDAO edao = new EmployeeDAO();
         if ( employee.verifyContent() && edao.add(employee) ) {

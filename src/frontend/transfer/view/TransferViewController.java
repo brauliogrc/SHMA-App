@@ -45,7 +45,7 @@ public class TransferViewController implements Initializable {
     @FXML
     private TableColumn<Transfer, String> colNumTraspaso;
     @FXML
-    private TableColumn<Transfer, Integer> colIdEmpleado;
+    private TableColumn<Transfer, String> colNombreEmpleado;
     @FXML
     private Button btnRegistrar;
     @FXML
@@ -66,7 +66,7 @@ public class TransferViewController implements Initializable {
         employeeList.forEach( (item) -> {
             this.colId.setCellValueFactory( new PropertyValueFactory<Transfer, Integer>( "idTraspaso" ) );
             this.colNumTraspaso.setCellValueFactory( new PropertyValueFactory<Transfer, String>( "numero_traspado" ) );
-            this.colIdEmpleado.setCellValueFactory( new PropertyValueFactory<Transfer, Integer>( "idEmpleado" ) );
+            this.colNombreEmpleado.setCellValueFactory( new PropertyValueFactory<Transfer, String>( "employeeName" ) );
             
             ObservableList<Transfer> dat = FXCollections.observableArrayList( item );
             // this.employeesTable.getColumns().addAll( this.colId, this.colName, this.colApellidoPat, this.colApellidoMat, this.colFuncion, this.colTel, this.colImg );

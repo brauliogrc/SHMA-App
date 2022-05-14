@@ -5,6 +5,7 @@
  */
 package frontend.firstview;
 
+import backend.login.UserData;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,6 +32,16 @@ public class FirstViewController implements Initializable {
     private Button btnTransfers;
     @FXML
     private Button btnOperators;
+    
+    UserData ud;
+    
+    public void setUserData( UserData ud ) {
+        this.ud = ud;
+        if ( this.ud.getRol() == 2 ) {
+            this.btnTransfers.setVisible(false);
+            this.btnUsers.setVisible(false);
+        }
+    }
     
     public void showEmployeesView() throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -67,7 +78,6 @@ public class FirstViewController implements Initializable {
         stage.setResizable( false );
         stage.setScene(scene);
         stage.showAndWait();
-        
     }
     public void showOperatorsView() throws IOException {
         FXMLLoader loader = new FXMLLoader();

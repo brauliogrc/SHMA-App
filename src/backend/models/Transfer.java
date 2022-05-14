@@ -29,6 +29,15 @@ public class Transfer {
      * FK de la tabla empleados. Representa el Id de un empleado
      */
     private int idEmpleado;
+    private String employeeName;
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
 
     public int getIdTraspaso() {
         return idTraspaso;

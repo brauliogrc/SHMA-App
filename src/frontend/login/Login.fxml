@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="0.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.login.LoginController">
+    <stylesheets>
+        <URL value="@login.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="400.0" prefWidth="396.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Bienvenido a SHMA">
+               <font>
+                  <Font name="Consolas" size="28.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnIngresar" layoutX="144.0" layoutY="326.0" mnemonicParsing="false" onAction="#iniciarSecion" text="Iniciar sesion" />
+            <TextField fx:id="txtEmail" layoutX="104.0" layoutY="150.0" />
+            <PasswordField fx:id="txtPass" layoutX="104.0" layoutY="230.0" />
+            <Label layoutX="104.0" layoutY="117.0" text="Email">
+               <font>
+                  <Font name="Consolas" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="104.0" layoutY="200.0" text="Contraseña">
+               <font>
+                  <Font name="Consolas" size="15.0" />
+               </font>
+            </Label>
+            <ProgressBar layoutX="4.0" layoutY="375.0" prefHeight="23.0" prefWidth="388.0" progress="0.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

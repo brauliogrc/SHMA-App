@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="571.0" prefWidth="653.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="frontend.user.view.UserViewController">
+<AnchorPane id="AnchorPane" prefHeight="571.0" prefWidth="653.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.user.view.UserViewController">
     <stylesheets>
         <URL value="@userview.css" />
     </stylesheets>
@@ -33,6 +33,8 @@
             <Button fx:id="btnActualizar" layoutX="298.0" layoutY="355.0" mnemonicParsing="false" onAction="#showUpdatePopUp" text="Actualizar" />
             <Button fx:id="btnEliminar" layoutX="565.0" layoutY="355.0" mnemonicParsing="false" onAction="#deleteuser" text="Eliminar" />
             <Separator layoutX="14.0" layoutY="409.0" prefHeight="7.0" prefWidth="625.0" />
+            <Label fx:id="lblEmailError" layoutX="94.0" layoutY="104.0" textFill="RED" />
+            <Label fx:id="lblPassError" layoutX="419.0" layoutY="104.0" textFill="#ff0b0b" />
          </children>
       </Pane>
       <Pane layoutY="424.0" prefHeight="274.0" prefWidth="653.0">
@@ -44,7 +46,7 @@
                 <TableColumn fx:id="colActivo" text="Activo" />
                   <TableColumn fx:id="colHabilitado" prefWidth="82.0" text="Habilitado" />
                   <TableColumn fx:id="colRecuperacion" prefWidth="105.0" text="Recuperacion" />
-                  <TableColumn fx:id="colIdEmpleado" prefWidth="112.0" text="Id Empleado" />
+                  <TableColumn fx:id="colNombreEmpleado" prefWidth="112.0" text="Empleado" />
               </columns>
             </TableView>
          </children>

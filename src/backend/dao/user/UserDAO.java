@@ -32,7 +32,7 @@ public class UserDAO implements ICRUD<User> {
         try {
             Connection conn = DbConnection.getConnection();
             String query = "INSERT INTO usuarios( email, password, activo, habilitado, recuperacion, idEmpleado ) "
-                    + "VALUES( ?, ?, ?, ?, ?, ?)";
+                    + "VALUES( ?, MD5(?), ?, ?, ?, ?)";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, t.getEmail());
@@ -185,7 +185,9 @@ public class UserDAO implements ICRUD<User> {
     public ArrayList<User> getAll() {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "SELECT * FROM usuarios";
+            String query = "SELECT u.idUsuario, u.email, u.activo, u.habilitado, u.recuperacion, e.nombre "
+                            + "FROM usuarios AS u INNER JOIN empleados AS e "
+                            + "ON u.idEmpleado = e.idEmpleado;";
             
             PreparedStatement ps = conn.prepareStatement(query);
             
@@ -197,11 +199,11 @@ public class UserDAO implements ICRUD<User> {
                 User u = new User();
                 u.setIdUsuario( rs.getInt( "idUsuario" ) );
                 u.setEmail( rs.getString( "email" ) );
-                u.setPassword( rs.getString( "password" ) );
+                //u.setPassword( rs.getString( "password" ) );
                 u.setActivo( rs.getBoolean( "activo" ) );
                 u.setHabilitado( rs.getBoolean( "habilitado" ) );
                 u.setRecuperacion( rs.getBoolean( "recuperacion" ) );
-                u.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+                u.setEmployeeName(rs.getString( "nombre" ) );
                 
                 list.add(u);
             }
