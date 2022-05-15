@@ -9,10 +9,13 @@ import backend.dao.user.UserDAO;
 import backend.models.User;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
@@ -40,6 +43,10 @@ public class UpdateUserController implements Initializable {
     private Button btnConfirmar;
     @FXML
     private Button btnDescartar;
+    @FXML
+    private Label lblEmailError;
+    @FXML
+    private Label lblPassError;
     
     private int idUser;
     User user;
@@ -64,16 +71,20 @@ public class UpdateUserController implements Initializable {
         this.user.setHabilitado(this.ckbNewHabilitado.isSelected() );
         this.user.setRecuperacion(this.ckbNewRecuperación.isSelected() );
         this.user.setIdEmpleado( Integer.parseInt( this.txtNewIdEmpleado.getText() ) );
-        this.user.setPassword(this.txtNewPassword.getText() );
+        if ( !this.txtNewPassword.getText().isEmpty() && this.txtNewPassword.getText().length() > 0 ) {
+            this.user.setPassword( this.txtNewPassword.getText() );
+        }
         
         UserDAO edao = new UserDAO();
-        if ( edao.update(user) ) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Se ha actualizado al empleado ",
-                    "Actualizacipn exitosa",
-                    JOptionPane.DEFAULT_OPTION
-            );
+        if ( this.isEmail( this.txtNewEmail.getText() ) && this.securityPass( this.txtNewPassword.getText() ) ) {
+            if ( edao.update(user) ) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Se ha actualizado al usuario",
+                        "Actualizacipn exitosa",
+                        JOptionPane.DEFAULT_OPTION
+                );
+            }
         }
     }
     
@@ -86,11 +97,51 @@ public class UpdateUserController implements Initializable {
         user = edao.getOne(idUser);
         
         this.txtNewEmail.setText( user.getEmail() );
-        this.txtNewPassword.setText( user.getPassword() );
+        // this.txtNewPassword.setText( user.getPassword() );
         this.txtNewIdEmpleado.setText( String.valueOf( user.getIdEmpleado() ) );
         this.ckbNewActivo.setSelected(user.isActivo() );
         this.ckbNewHabilitado.setSelected( user.isHabilitado() );
         this.ckbNewRecuperación.setSelected( user.isRecuperacion() );
+    }
+    
+    public boolean isEmail( String correo ) {
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^[\\w\\-\\_\\+]+(\\.[\\w\\-\\_]+)*@([A-Za-z0-9]+\\.)+[A-Za-z]{2,4}$");
+        mat = pat.matcher(correo);
+        if( mat.find() ) {
+            this.lblEmailError.setText("");
+            return true;
+        }
+        else {
+            this.lblEmailError.setText( "Formato de correo electrónico inválido" );
+            return false;
+        }
+    }
+    
+    // Comprobación de contraseña
+    public boolean securityPass( String pass ) {
+        if ( !this.txtNewPassword.getText().isEmpty() && this.txtNewPassword.getText().length() > 0 ) {
+            if ( (pass.length() >= 8 && pass.length() <= 20) ) {
+            Pattern pat = null;
+            Matcher mat = null;
+            pat = Pattern.compile( "^((?=.*[A-Za-z]+)(?=.*[!\"#$%&/()=?¡|°¬'¿+*~\\[\\]{}\\^`;:\\-_@]+)(?=.*[0-9]+))" );
+            mat = pat.matcher(pass);
+            if ( mat.find() ) {
+                this.lblPassError.setText("");
+                return true;
+            }
+            else  {
+                this.lblPassError.setText( "La contraseña no cumple con los criterios de seguridad" );
+                return false;
+            }
+        }
+        else  {
+                this.lblPassError.setText( "La contraseña no cumple con los criterios de seguridad" );
+                return false;
+            }
+        }
+        else return true;
     }
     
     /**

@@ -174,7 +174,10 @@ public class OperatorDAO implements ICRUD<Operator> {
     public ArrayList<Operator> getAll() {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "SELECT * FROM operadores";
+            //String query = "SELECT * FROM operadores";
+            String query = "SELECT o.idOperador, o.activo, o.descanso, e.nombre "
+                                + "FROM operadores AS o INNER JOIN empleados AS e "
+                                + "ON o.idEmpleado = e.idEmpleado";
             
             PreparedStatement ps = conn.prepareStatement(query);
             
@@ -185,7 +188,7 @@ public class OperatorDAO implements ICRUD<Operator> {
                 o.setIdOperador( rs.getInt(( "idOperador" )) );
                 o.setActivo( rs.getBoolean( "activo" ) );
                 o.setDescanso( rs.getBoolean( "descanso" ) );
-                o.setIdEmpleado( rs.getInt( "idEmpleado" ) );
+                o.setEmployeeName(rs.getString( "nombre" ) );
                 
                 list.add(o);
             }

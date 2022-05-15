@@ -45,6 +45,15 @@ public class Employee {
      * Imagen del empleado
      */
     private String imagen;
+    private int rol;
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
 
     public int getIdEmpleado() {
         return idEmpleado;

@@ -37,7 +37,7 @@
                 <TableColumn fx:id="colId" prefWidth="65.0" text="Id" />
                 <TableColumn fx:id="colActivo" prefWidth="109.0" text="Activo" />
                   <TableColumn fx:id="colDescanso" prefWidth="88.0" text="Descanso" />
-                  <TableColumn fx:id="colIdEmpleado" prefWidth="121.0" text="Id Empleado" />
+                  <TableColumn fx:id="colEmpleado" prefWidth="121.0" text="Empleado" />
               </columns>
             </TableView>
          </children>

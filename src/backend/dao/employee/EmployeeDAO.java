@@ -31,8 +31,8 @@ public class EmployeeDAO implements ICRUD<Employee> {
     public boolean add(Employee t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "INSERT INTO empleados( funcion, nombre, apellido_paterno, apellido_materno, telefono, imagen ) "
-                    + "VALUES( ?, ?, ?, ?, ?, ? )";
+            String query = "INSERT INTO empleados( funcion, nombre, apellido_paterno, apellido_materno, telefono, imagen, rol ) "
+                    + "VALUES( ?, ?, ?, ?, ?, ?, ? )";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, t.getFuncion());
@@ -41,6 +41,7 @@ public class EmployeeDAO implements ICRUD<Employee> {
             ps.setString(4, t.getApellido_materno());
             ps.setString(5, t.getTelefono());
             ps.setString(6, t.getImagen());
+            ps.setInt(7, t.getRol());
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
@@ -72,7 +73,8 @@ public class EmployeeDAO implements ICRUD<Employee> {
                         + "apellido_paterno = ?, "
                         + "apellido_materno = ?, "
                         + "telefono = ?, "
-                        + "imagen = ? "
+                        + "imagen = ?, "
+                        + "rol = ? "
                     + "WHERE idEmpleado = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
@@ -82,7 +84,8 @@ public class EmployeeDAO implements ICRUD<Employee> {
             ps.setString(4, t.getApellido_materno());
             ps.setString(5, t.getTelefono());
             ps.setString(6, t.getImagen());
-            ps.setInt(7, t.getIdEmpleado());
+            ps.setInt(7, t.getRol());
+            ps.setInt(8, t.getIdEmpleado());
             int records = ps.executeUpdate();
             
             return ( records > 0 ) ? true : false;
@@ -152,6 +155,7 @@ public class EmployeeDAO implements ICRUD<Employee> {
                 e.setApellido_materno( rs.getString( "apellido_materno" ) );
                 e.setTelefono( rs.getString( "telefono" ) );
                 e.setImagen( rs.getString( "imagen" ) );
+                e.setRol(rs.getInt("rol" ) );
                 
                 return e;
             }
@@ -200,6 +204,7 @@ public class EmployeeDAO implements ICRUD<Employee> {
                 e.setApellido_materno( rs.getString( "apellido_materno" ) );
                 e.setTelefono(rs.getString( "telefono" ) );
                 e.setImagen(rs.getString( "imagen" ) );
+                e.setRol(rs.getInt("rol" ) );
                 
                 list.add(e);
             }

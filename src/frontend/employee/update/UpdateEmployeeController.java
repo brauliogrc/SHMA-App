@@ -36,6 +36,8 @@ public class UpdateEmployeeController implements Initializable {
     @FXML
     private TextField txtNewImg;
     @FXML
+    private TextField txtNewRol;
+    @FXML
     private Button btnConfirmar;
     @FXML
     private Button btnDescartar;
@@ -64,6 +66,7 @@ public class UpdateEmployeeController implements Initializable {
         this.employee.setFuncion(this.txtNewFuncion.getText() );
         this.employee.setTelefono(this.txtNewTelefono.getText() );
         this.employee.setImagen(this.txtNewImg.getText() );
+        this.employee.setRol( Integer.parseInt( this.txtNewRol.getText() ) );
         
         EmployeeDAO edao = new EmployeeDAO();
         if ( edao.update(employee) ) {
@@ -90,6 +93,7 @@ public class UpdateEmployeeController implements Initializable {
         this.txtNewFuncion.setText( employee.getFuncion());
         this.txtNewTelefono.setText( employee.getTelefono());
         this.txtNewImg.setText( employee.getImagen());
+        this.txtNewRol.setText( String.valueOf(employee.getRol()));
     }
     
     public void close() {
