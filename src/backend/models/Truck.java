@@ -24,8 +24,8 @@ public class Truck {
         this.idCamion = idCamione;
     }
 
-    public Truck() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Truck() { 
+    
     }
 
     public int getIdCamion() {
