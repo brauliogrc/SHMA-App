@@ -21,6 +21,10 @@ public class Dolly {
     public Dolly(int idDolly) {
         this.idDolly = idDolly;
     }
+    
+    public Dolly() {
+        
+    }
 
     public int getIdDolly() {
         return idDolly;

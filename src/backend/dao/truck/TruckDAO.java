@@ -25,8 +25,8 @@ public class TruckDAO implements ICRUD<Truck>{
     public boolean add(Truck t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "INSERT INTO camiones ( numero_economico_camion, numero_serie_camion, modelo, mantenimiento, activo )"
-                    + " VALUES( ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO camiones (idCamion, numero_economico_camion, numero_serie_camion, modelo, mantenimiento, activo )"
+                    + " VALUES(null, ?, ?, ?, ?, ?)";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, t.getNumero_economico());

@@ -22,6 +22,10 @@ public class Box {
         this.idCaja = idCaja;
     }
 
+    public Box() {
+    
+    }
+
     public int getIdCaja() {
         return idCaja;
     }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="958.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.truck.view.TruckViewController">
+   <children>
+      <AnchorPane layoutX="45.0" layoutY="38.0" prefHeight="580.0" prefWidth="270.0" style="-fx-border-style: solid; -fx-border-color: gray; -fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Numero Economico" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <TextField fx:id="txtNumEconomico" layoutX="12.0" layoutY="37.0" prefHeight="25.0" prefWidth="248.0" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="36.0" />
+            <Label layoutX="14.0" layoutY="69.0" text="Numero de Serie" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="70.0" />
+            <TextField fx:id="txtNumSerie" layoutX="11.0" layoutY="95.0" prefHeight="25.0" prefWidth="248.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="95.0" />
+            <TextField fx:id="txtModelo" layoutX="10.0" layoutY="152.0" prefHeight="25.0" prefWidth="248.0" AnchorPane.topAnchor="155.0" />
+            <Label layoutX="13.0" layoutY="126.0" text="Modelo" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" />
+            <Button fx:id="btnGuardar" layoutX="10.0" layoutY="405.0" mnemonicParsing="false" onAction="#btnGuardarOnAction" prefHeight="25.0" prefWidth="248.0" text="Guardar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" />
+            <Button fx:id="btnCancelar" disable="true" layoutX="13.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnCancelarOnAction" prefHeight="25.0" prefWidth="248.0" text="Cancelar" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <CheckBox fx:id="isActivo" layoutX="14.0" layoutY="197.0" mnemonicParsing="false" text="Activo" />
+            <CheckBox fx:id="isMantenimiento" layoutX="11.0" layoutY="232.0" mnemonicParsing="false" text="Mantenimiento" />
+            <Label fx:id="labelTitulo" layoutX="16.0" layoutY="324.0" text="TITULO">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="296.0" layoutY="10.0" prefHeight="480.0" prefWidth="494.0" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-color: gray;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <TableView fx:id="table" layoutX="67.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="10.0" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
