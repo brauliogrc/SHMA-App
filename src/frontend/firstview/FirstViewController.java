@@ -32,6 +32,16 @@ public class FirstViewController implements Initializable {
     private Button btnTransfers;
     @FXML
     private Button btnOperators;
+    @FXML
+    private Button btnBoxes;
+    @FXML
+    private Button btnDolly;
+    @FXML
+    private Button btnPlatform;
+    @FXML
+    private Button btnTravels;
+    @FXML
+    private Button btnTrucks;
     
     UserData ud;
     
@@ -40,6 +50,7 @@ public class FirstViewController implements Initializable {
         if ( this.ud.getRol() == 2 ) {
             this.btnTransfers.setVisible(false);
             this.btnUsers.setVisible(false);
+            this.btnEmployees.setVisible(false);
         }
     }
     
@@ -61,7 +72,7 @@ public class FirstViewController implements Initializable {
         
         Scene scene = new Scene( loader.load() ); 
         Stage stage = new Stage();
-        stage.setTitle( "Empleados" );
+        stage.setTitle( "Usuarios" );
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setResizable( false );
         stage.setScene(scene);
@@ -73,7 +84,7 @@ public class FirstViewController implements Initializable {
         
         Scene scene = new Scene( loader.load() ); 
         Stage stage = new Stage();
-        stage.setTitle( "Empleados" );
+        stage.setTitle( "Traspasos" );
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setResizable( false );
         stage.setScene(scene);
@@ -85,7 +96,67 @@ public class FirstViewController implements Initializable {
         
         Scene scene = new Scene( loader.load() ); 
         Stage stage = new Stage();
-        stage.setTitle( "Empleados" );
+        stage.setTitle( "Operadores" );
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable( false );
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    public void showBoxView() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation( getClass().getResource( "../box/view/BoxView.fxml" ) );
+        
+        Scene scene = new Scene( loader.load() ); 
+        Stage stage = new Stage();
+        stage.setTitle( "Cajas" );
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable( false );
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    public void showDollyView() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation( getClass().getResource( "../dolly/view/DollyView.fxml" ) );
+        
+        Scene scene = new Scene( loader.load() ); 
+        Stage stage = new Stage();
+        stage.setTitle( "Dollies" );
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable( false );
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    public void showPlatformView() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation( getClass().getResource( "../platform/view/PlatformView.fxml" ) );
+        
+        Scene scene = new Scene( loader.load() ); 
+        Stage stage = new Stage();
+        stage.setTitle( "Plataformas" );
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable( false );
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    public void showTravelView() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation( getClass().getResource( "../travel/view/TravelView.fxml" ) );
+        
+        Scene scene = new Scene( loader.load() ); 
+        Stage stage = new Stage();
+        stage.setTitle( "Viajes" );
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setResizable( false );
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    public void showTruckView() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation( getClass().getResource( "../truck/view/TruckView.fxml" ) );
+        
+        Scene scene = new Scene( loader.load() ); 
+        Stage stage = new Stage();
+        stage.setTitle( "Camiones" );
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setResizable( false );
         stage.setScene(scene);

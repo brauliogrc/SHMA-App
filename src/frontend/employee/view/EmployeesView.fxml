@@ -8,41 +8,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="815.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.employee.view.EmployeesViewController">
+<AnchorPane id="AnchorPane" prefHeight="629.0" prefWidth="1010.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.employee.view.EmployeesViewController">
     <stylesheets>
         <URL value="@employeesview.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="363.0" prefWidth="815.0">
+      <Pane prefHeight="638.0" prefWidth="1061.0">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Employees">
                <font>
                   <Font name="Consolas" size="28.0" />
                </font>
             </Label>
-            <Button fx:id="btnRegister" layoutX="14.0" layoutY="299.0" mnemonicParsing="false" onAction="#addEmployee" text="Registrar" />
-            <Button fx:id="btnUpdate" layoutX="357.0" layoutY="299.0" mnemonicParsing="false" onAction="#showUpdatePopUp" text="Actualizar" />
-            <Button fx:id="btnDelete" layoutX="728.0" layoutY="299.0" mnemonicParsing="false" onAction="#deleteEmployee" text="Eliminar" />
-            <Label layoutX="46.0" layoutY="77.0" text="Nombre:" />
-            <Label layoutX="46.0" layoutY="128.0" text="Apellido paterno:" />
-            <Label layoutX="46.0" layoutY="179.0" text="Apellido materno:" />
-            <Label layoutX="377.0" layoutY="77.0" text="Función:" />
-            <Label layoutX="377.0" layoutY="128.0" text="Tel:" />
-            <Label layoutX="377.0" layoutY="179.0" text="Img path:" />
-            <TextField fx:id="txtNombre" layoutX="113.0" layoutY="72.0" />
-            <TextField fx:id="txtApellidoPat" layoutX="165.0" layoutY="123.0" />
-            <TextField fx:id="txtApellidoMat" layoutX="175.0" layoutY="174.0" />
-            <TextField fx:id="txtFuncion" layoutX="440.0" layoutY="72.0" />
-            <TextField fx:id="txtTel" layoutX="405.0" layoutY="123.0" />
-            <TextField fx:id="txtImg" layoutX="448.0" layoutY="174.0" />
-            <Separator layoutX="11.0" layoutY="344.0" prefHeight="11.0" prefWidth="794.0" />
-            <TextField fx:id="txtRol" layoutX="82.0" layoutY="230.0" />
-            <Label layoutX="46.0" layoutY="235.0" text="Rol:" />
-         </children>
-      </Pane>
-      <Pane layoutY="363.0" prefHeight="266.0" prefWidth="815.0">
-         <children>
-            <TableView fx:id="employeesTable" layoutX="9.0" prefHeight="254.0" prefWidth="794.0">
+            <Button fx:id="btnUpdate" layoutX="129.0" layoutY="578.0" mnemonicParsing="false" onAction="#showUpdatePopUp" text="Actualizar" />
+            <Button fx:id="btnDelete" layoutX="255.0" layoutY="578.0" mnemonicParsing="false" onAction="#deleteEmployee" text="Eliminar" />
+            <Label layoutX="19.0" layoutY="62.0" text="Nombre" />
+            <Label layoutX="18.0" layoutY="128.0" text="Apellido paterno" />
+            <Label layoutX="16.0" layoutY="205.0" text="Apellido materno" />
+            <Label layoutX="20.0" layoutY="349.0" text="Función" />
+            <Label layoutX="20.0" layoutY="423.0" text="Tel" />
+            <Label layoutX="16.0" layoutY="488.0" text="Img path" />
+            <TextField fx:id="txtNombre" layoutX="19.0" layoutY="88.0" />
+            <TextField fx:id="txtApellidoPat" layoutX="19.0" layoutY="159.0" />
+            <TextField fx:id="txtApellidoMat" layoutX="19.0" layoutY="233.0" />
+            <TextField fx:id="txtFuncion" layoutX="19.0" layoutY="377.0" />
+            <TextField fx:id="txtTel" layoutX="19.0" layoutY="444.0" />
+            <TextField fx:id="txtImg" layoutX="14.0" layoutY="515.0" />
+            <TextField fx:id="txtRol" layoutX="19.0" layoutY="299.0" />
+            <Label layoutX="19.0" layoutY="277.0" text="Rol" />
+            <Button fx:id="btnRegister" layoutX="19.0" layoutY="578.0" mnemonicParsing="false" onAction="#addEmployee" text="Registrar" />
+            <TableView fx:id="employeesTable" layoutX="238.0" layoutY="16.0" prefHeight="541.0" prefWidth="776.0">
               <columns>
                 <TableColumn fx:id="colId" prefWidth="54.0" text="Id" />
                 <TableColumn fx:id="colName" prefWidth="104.0" text="Nombre" />

@@ -8,31 +8,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="423.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.transfer.view.TransferViewController">
+<AnchorPane id="AnchorPane" prefHeight="266.0" prefWidth="349.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.transfer.view.TransferViewController">
     <stylesheets>
         <URL value="@transferview.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="343.0" prefWidth="423.0">
+      <Pane prefHeight="352.0" prefWidth="641.0">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Traspasos">
                <font>
                   <Font name="Consolas" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="48.0" layoutY="87.0" text="Número traspaso:" />
-            <Label layoutX="48.0" layoutY="158.0" text="Id Empleado:" />
-            <TextField fx:id="txtNumTraspaso" layoutX="176.0" layoutY="82.0" />
-            <TextField fx:id="txtIdEmpleado" layoutX="143.0" layoutY="153.0" />
-            <Separator layoutX="14.0" layoutY="329.0" prefHeight="0.0" prefWidth="393.0" />
-            <Button fx:id="btnRegistrar" layoutX="26.0" layoutY="266.0" mnemonicParsing="false" onAction="#addTransfer" text="Registrar" />
-            <Button fx:id="btnActualizar" layoutX="168.0" layoutY="266.0" mnemonicParsing="false" onAction="#showUpdatePopUp" text="Actualizar" />
-            <Button fx:id="btnEliminar" layoutX="336.0" layoutY="266.0" mnemonicParsing="false" onAction="#deleteTransfer" text="Eliminar" />
-         </children>
-      </Pane>
-      <Pane layoutY="343.0" prefHeight="254.0" prefWidth="423.0">
-         <children>
-            <TableView fx:id="transfersTable" layoutX="14.0" layoutY="14.0" prefHeight="227.0" prefWidth="393.0">
+            <Label layoutX="14.0" layoutY="61.0" text="Número traspaso" />
+            <Label layoutX="14.0" layoutY="143.0" text="Id Empleado" />
+            <TextField fx:id="txtNumTraspaso" layoutX="11.0" layoutY="88.0" />
+            <TextField fx:id="txtIdEmpleado" layoutX="14.0" layoutY="164.0" />
+            <Button fx:id="btnRegistrar" layoutX="16.0" layoutY="307.0" mnemonicParsing="false" onAction="#addTransfer" text="Registrar" />
+            <Button fx:id="btnActualizar" layoutX="115.0" layoutY="307.0" mnemonicParsing="false" onAction="#showUpdatePopUp" text="Actualizar" />
+            <Button fx:id="btnEliminar" layoutX="226.0" layoutY="307.0" mnemonicParsing="false" onAction="#deleteTransfer" text="Eliminar" />
+            <TableView fx:id="transfersTable" layoutX="212.0" layoutY="21.0" prefHeight="268.0" prefWidth="404.0">
               <columns>
                 <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
                 <TableColumn fx:id="colNumTraspaso" prefWidth="132.0" text="No. Traspaso" />

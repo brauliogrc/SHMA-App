@@ -8,12 +8,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="63.0" prefWidth="178.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="frontend.firstview.FirstViewController">
+<AnchorPane id="AnchorPane" prefHeight="63.0" prefWidth="178.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.firstview.FirstViewController">
     <stylesheets>
         <URL value="@firstview.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="279.0" prefWidth="538.0">
+      <Pane prefHeight="537.0" prefWidth="538.0">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="SHMA Panel">
                <font>
@@ -38,6 +38,31 @@
             <Button fx:id="btnOperators" layoutX="311.0" layoutY="190.0" mnemonicParsing="false" onAction="#showOperatorsView" text="Gestión de Operadores">
                <font>
                   <Font name="Consolas" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnBoxes" layoutX="14.0" layoutY="273.0" mnemonicParsing="false" onAction="#showBoxView" prefHeight="31.0" prefWidth="198.0" text="Gestión de cajas">
+               <font>
+                  <Font name="Consolas" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnTravels" layoutX="316.0" layoutY="355.0" mnemonicParsing="false" onAction="#showTravelView" prefHeight="31.0" prefWidth="198.0" text="Gestión de viajes">
+               <font>
+                  <Font name="Consolas" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnPlatform" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#showPlatformView" prefHeight="31.0" prefWidth="198.0" text="Gestión de plataformas">
+               <font>
+                  <Font name="Consolas" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnTrucks" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#showTruckView" prefHeight="31.0" prefWidth="198.0" text="Gestión de camiones">
+               <font>
+                  <Font name="Consolas" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnDolly" layoutX="315.0" layoutY="273.0" mnemonicParsing="false" onAction="#showDollyView" prefHeight="31.0" prefWidth="198.0" text="Gestión de Dollies">
+               <font>
+                  <Font name="Consolas" size="15.0" />
                </font>
             </Button>
          </children>
