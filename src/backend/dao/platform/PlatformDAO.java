@@ -99,8 +99,7 @@ public class PlatformDAO implements ICRUD<Platform> {
     public boolean delete(Platform t) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "DELETE FROM plataformas"
-                            + "WHERE idPlataforma = ?";
+            String query = "DELETE FROM plataformas WHERE idPlataforma = ?";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, t.getIdPlatform());
@@ -114,7 +113,7 @@ public class PlatformDAO implements ICRUD<Platform> {
                     null,
                     "Error con consulta DELETE:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
                     "Error al eliminar la plataforma",
-                    JOptionPane.ERROR
+                    JOptionPane.ERROR_MESSAGE
             );
             return false;
         }
@@ -157,7 +156,7 @@ public class PlatformDAO implements ICRUD<Platform> {
                     null,
                     "Error con consulta SELECT:\n\t" + sqlex.getMessage() + "\n\n\t" + sqlex.getSQLState(),
                     "Error al obtener plataforma",
-                    JOptionPane.ERROR
+                    JOptionPane.ERROR_MESSAGE
             );
             return null;
         }
@@ -182,6 +181,8 @@ public class PlatformDAO implements ICRUD<Platform> {
                 o.setIdDolly( rs.getInt( "idDolly" ) );
                 o.setIdMainBox(rs.getInt( "idPrimera" ));
                 o.setIdSecondBox(rs.getInt( "idSegunda" ));
+                
+                list.add(o);
             }
             return list;
         }

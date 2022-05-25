@@ -27,6 +27,10 @@ public class Platform {
         this.idSecondBox = idSecondBox;
     }
 
+    public Platform() {
+    
+    }
+
     public int getIdMainBox() {
         return idMainBox;
     }

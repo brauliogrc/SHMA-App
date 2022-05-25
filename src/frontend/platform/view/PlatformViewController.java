@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package frontend.dolly.view;
+package frontend.platform.view;
 
 import backend.dao.dolly.DollyDAO;
+import backend.dao.box.BoxDAO;
+import backend.dao.platform.PlatformDAO;
+import backend.models.Box;
 import backend.models.Dolly;
+import backend.models.Platform;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -20,13 +24,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.StageStyle;
 
@@ -35,75 +39,77 @@ import javafx.stage.StageStyle;
  *
  * @author Manuel Soto
  */
-public class DollyViewController implements Initializable {
+public class PlatformViewController implements Initializable {
 
-
-    @FXML
-    private TextField txtNumSerie;
 
     @FXML
     private Label labelTitulo;
 
     @FXML
-    private TextField txtModelo;
-
-    @FXML
     private Button btnGuardar;
 
     @FXML
-    private CheckBox isActivo;
-
-    @FXML
-    private CheckBox isMantenimiento;
+    private ComboBox<Box> selectSegunda;
 
     @FXML
     private Button btnCancelar;
 
     @FXML
-    private TableView<Dolly> table;
+    private ComboBox<Dolly> selectDolly;
 
     @FXML
-    private TextField txtNumEconomico;
+    private ComboBox<Box> selectPrimera;
+
+    @FXML
+    private TableView<Platform> table;
+
     
-    private DollyDAO objDAO;
-
+    private DollyDAO dollyDao = new DollyDAO();
+    private BoxDAO boxDao = new BoxDAO();
+    
     private ContextMenu cmOpciones;
-
-    private Dolly selected;
+    private PlatformDAO objDAO;
+    private Platform selected;
 
     @FXML
     void btnGuardarOnAction(ActionEvent event) {
         if (selected == null) {
-            Dolly obj = new Dolly();
-            obj.setNumero_economico(txtNumEconomico.getText());
-            obj.setNumero_serie(txtNumSerie.getText());
-            obj.setModelo(txtModelo.getText());
-            obj.setActivo(isActivo.isSelected());
-            obj.setMantenimiento(isMantenimiento.isSelected());
-
-            if (this.objDAO.add(obj)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Exito");
-                alert.setHeaderText(null);
-                alert.setContentText("Registro guardado satisfactoriamente!!!");
-                alert.initStyle(StageStyle.UTILITY);
-                alert.showAndWait();
-                cargar();
+            Platform obj = new Platform();
+            
+            obj.setIdMainBox(selectPrimera.getValue().getIdCaja());
+            obj.setIdDolly(selectDolly.getValue().getIdDolly());
+            obj.setIdSecondBox(selectSegunda.getValue().getIdCaja());
+            if(true){//Cajas no iguales
+                if (this.objDAO.add(obj)) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Exito");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Registro guardado satisfactoriamente!!!");
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.showAndWait();
+                    cargar();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("No se guardo el registro");
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.showAndWait();
+                }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
-                alert.setContentText("No se guardo el registro");
+                alert.setContentText("No utilice la misma caja");
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
             }
+            
             limpiarCampos();
         } else {
-            selected.setNumero_economico(txtNumEconomico.getText());
-            selected.setNumero_serie(txtNumSerie.getText());
-            selected.setModelo(txtModelo.getText());
-            selected.setActivo(isActivo.isSelected());
-            selected.setMantenimiento(isMantenimiento.isSelected());
+            selected.setIdMainBox(selectPrimera.getValue().getIdCaja());
+            selected.setIdDolly(selectDolly.getValue().getIdDolly());
+            selected.setIdSecondBox(selectSegunda.getValue().getIdCaja());
             if (this.objDAO.update(selected)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Exito");
@@ -136,31 +142,46 @@ public class DollyViewController implements Initializable {
     public void cargar() {
         table.getItems().clear();
         table.getColumns().clear();
-        List<Dolly> obj = this.objDAO.getAll();
-        ObservableList<Dolly> data = FXCollections.observableArrayList(obj);
+        List<Platform> obj = this.objDAO.getAll();
+        System.out.println(obj);
+        ObservableList<Platform> data = FXCollections.observableArrayList(obj);
         TableColumn idCol = new TableColumn("ID");
-        idCol.setCellValueFactory(new PropertyValueFactory("idDolly"));
-        TableColumn neconoCol = new TableColumn("Numero Economico");
-        neconoCol.setCellValueFactory(new PropertyValueFactory("numero_economico"));
-        TableColumn nserieCol = new TableColumn("Numero Serie");
-        nserieCol.setCellValueFactory(new PropertyValueFactory("numero_serie"));
-        TableColumn modeloCol = new TableColumn("Modelo");
-        modeloCol.setCellValueFactory(new PropertyValueFactory("modelo"));
-        TableColumn activoCol = new TableColumn("Activo");
-        activoCol.setCellValueFactory(new PropertyValueFactory("activo"));
-        TableColumn mantenimientoCol = new TableColumn("Mantenimiento");
-        mantenimientoCol.setCellValueFactory(new PropertyValueFactory("mantenimiento"));
-
+        idCol.setCellValueFactory(new PropertyValueFactory("idPlatform"));
+        TableColumn box1Col = new TableColumn("Caja 1");
+        box1Col.setCellValueFactory(new PropertyValueFactory("idMainBox"));
+        TableColumn dollyCol = new TableColumn("Dolly");
+        dollyCol.setCellValueFactory(new PropertyValueFactory("idDolly"));
+        TableColumn box2Col = new TableColumn("Caja 2");
+        box2Col.setCellValueFactory(new PropertyValueFactory("idSecondBox"));
         table.setItems(data);
-        table.getColumns().addAll(idCol, neconoCol, nserieCol, modeloCol, activoCol, mantenimientoCol);
+        table.getColumns().addAll(idCol, box1Col, dollyCol, box2Col);
+        
+        
+        selectPrimera.getItems().clear();
+        selectDolly.getItems().clear();
+        selectSegunda.getItems().clear();
+        
+        List<Dolly> dolly = this.dollyDao.getAll();
+        ObservableList<Dolly> dollies= FXCollections.observableArrayList(dolly);
+        selectDolly.getItems().addAll(dollies);
+        List<Box> box = this.boxDao.getAll();
+        ObservableList<Box> boxes1 = FXCollections.observableArrayList(box);
+        ObservableList<Box> boxes2 = FXCollections.observableArrayList(box);
+        selectPrimera.getItems().addAll(boxes1);
+        selectSegunda.getItems().addAll(boxes2);
+        
+        
+        selectPrimera.getSelectionModel().select(0);
+        selectDolly.getSelectionModel().select(0);
+        selectSegunda.getSelectionModel().select(0);
+        
+        
     } 
     
     private void limpiarCampos() {
-        txtNumEconomico.setText("");
-        txtNumSerie.setText("");
-        txtModelo.setText("");
-        isActivo.setSelected(false);
-        isMantenimiento.setSelected(false);
+        selectPrimera.setValue(null);
+        selectDolly.setValue(null);
+        selectSegunda.setValue(null);
     }
 
     /**
@@ -168,9 +189,9 @@ public class DollyViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.objDAO = new DollyDAO();
+        this.objDAO = new PlatformDAO();
         cargar();
-        labelTitulo.setText("Dollies");
+        labelTitulo.setText("Plataformas");
         cmOpciones = new ContextMenu();
 
         MenuItem miEditar = new MenuItem("Editar");
@@ -184,11 +205,9 @@ public class DollyViewController implements Initializable {
                 int index = table.getSelectionModel().getSelectedIndex();
                 selected = table.getItems().get(index);
                 System.out.println(selected);
-                txtNumEconomico.setText(selected.getNumero_economico());
-                txtNumSerie.setText(selected.getNumero_serie());
-                txtModelo.setText(selected.getModelo());
-                isActivo.setSelected(selected.isActivo());
-                isMantenimiento.setSelected(selected.isMantenimiento());
+                selectPrimera.setValue(boxDao.getOne(selected.getIdMainBox()));
+                selectSegunda.setValue(boxDao.getOne(selected.getIdSecondBox()));
+                selectDolly.setValue(dollyDao.getOne(selected.getIdDolly()));
                 btnCancelar.setDisable(false);
             }
         });
@@ -198,7 +217,6 @@ public class DollyViewController implements Initializable {
             public void handle(ActionEvent event) {
                 int index = table.getSelectionModel().getSelectedIndex();
                 selected = table.getItems().get(index);
-                System.out.println(selected);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Eliminar");
                 alert.setHeaderText("Estas seguro de eliminar el siguiente registro?");
